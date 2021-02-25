@@ -1,7 +1,7 @@
 Django
 psycopg2
 django-compressor
-django-oscar>=1.5,<1.6
+django-oscar>=1.6,<2.0
 django-modelcluster
 wagtail>=2.1,<2.2
 django-taggit
