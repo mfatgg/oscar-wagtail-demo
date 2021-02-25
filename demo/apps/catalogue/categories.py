@@ -1,4 +1,4 @@
-from wagtail.wagtailcore.models import Page
+from wagtail.core.models import Page
 from demo.apps.catalogue.models import Category
 
 

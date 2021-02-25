@@ -5,24 +5,24 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django import forms
 
-from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import RichTextField, StreamField
-from wagtail.wagtailadmin.edit_handlers import (
+from wagtail.core.models import Page, Orderable
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.admin.edit_handlers import (
     FieldPanel, MultiFieldPanel, InlinePanel, PageChooserPanel,
     StreamFieldPanel
 )
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
-from wagtail.wagtailsnippets.models import register_snippet
-from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
-from wagtail.wagtailsearch import index
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
+from wagtail.snippets.models import register_snippet
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.search import index
 
-from wagtail.wagtailcore.blocks import (
+from wagtail.core.blocks import (
     TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock,
     RawHTMLBlock
 )
-from wagtail.wagtailimages.blocks import ImageChooserBlock
-from wagtail.wagtaildocs.blocks import DocumentChooserBlock
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.documents.blocks import DocumentChooserBlock
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager

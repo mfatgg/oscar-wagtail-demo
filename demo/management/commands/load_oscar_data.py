@@ -1,15 +1,15 @@
 import os
 
 from django.conf import settings
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 from django.core.management import call_command
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     """
     Import Oscar fixtures
     """
-    def handle_noargs(self, **options):
+    def handle(self, **options):
         fixtures_dir = os.path.join(settings.PROJECT_ROOT, 'demo', 'fixtures')
         catalogue_dir = os.path.join(fixtures_dir, 'catalogue')
 

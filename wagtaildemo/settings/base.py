@@ -25,6 +25,12 @@ DATABASES = {
         'NAME': 'oscarwagtaildemo',
     }
 }
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -110,8 +116,8 @@ MIDDLEWARE_CLASSES = (
 
     'oscar.apps.basket.middleware.BasketMiddleware',
 
-    'wagtail.wagtailcore.middleware.SiteMiddleware',
-    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -142,18 +148,18 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'wagtail.wagtailcore',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtaildocs',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailimages',
-    'wagtail.wagtailembeds',
-    'wagtail.wagtailsearch',
-    'wagtail.wagtailredirects',
-    'wagtail.wagtailforms',
-    'wagtail.wagtailsites',
-    'wagtail.contrib.wagtailapi',
+    'wagtail.core',
+    'wagtail.admin',
+    'wagtail.documents',
+    'wagtail.snippets',
+    'wagtail.users',
+    'wagtail.images',
+    'wagtail.embeds',
+    'wagtail.search',
+    'wagtail.contrib.redirects',
+    'wagtail.contrib.forms',
+    'wagtail.sites',
+    #'wagtail.contrib.wagtailapi',
 
     'demo',
 ] + get_core_apps([
@@ -168,14 +174,18 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-# Add wagtail.contrib.wagtailsearchpromotions to INSTALLED_APPS
+# Add wagtail.contrib.searchpromotions to INSTALLED_APPS
 # if we're on Wagtail 1.1 or later.
 # NB this is a quick-and-dirty version check that won't work with
 # full generality (double-digit versions, alpha/beta releases)
-from wagtail.wagtailcore import __version__  # noqa
-if __version__.split('.') > ['1', '0']:
+from wagtail.core import __version__  # noqa
+if __version__.split('.') > ['2', '0']:
     INSTALLED_APPS = list(INSTALLED_APPS) + [
-        'wagtail.contrib.wagtailsearchpromotions'
+        'wagtail.contrib.search_promotions'
+    ]
+elif __version__.split('.') > ['1', '0']:
+    INSTALLED_APPS = list(INSTALLED_APPS) + [
+        'wagtail.contrib.searchpromotions'
     ]
 
 

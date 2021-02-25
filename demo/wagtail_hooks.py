@@ -2,8 +2,8 @@ from django.utils.html import format_html
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
-from wagtail.wagtailcore import hooks
-from wagtail.wagtailadmin.menu import MenuItem
+from wagtail.core import hooks
+from wagtail.admin.menu import MenuItem
 
 
 @hooks.register('insert_editor_css')

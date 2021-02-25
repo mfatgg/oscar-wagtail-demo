@@ -6,7 +6,7 @@ DEBUG = False
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND':
-            'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
+            'wagtail.search.backends.elasticsearch.ElasticSearch',
         'INDEX': 'wagtaildemo'
     }
 }

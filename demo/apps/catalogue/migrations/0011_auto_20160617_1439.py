@@ -4,9 +4,9 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 import django.db.models.deletion
 import demo.apps.catalogue.blocks
-import wagtail.wagtailimages.blocks
-import wagtail.wagtailcore.fields
-import wagtail.wagtailcore.blocks
+import wagtail.images.blocks
+import wagtail.core.fields
+import wagtail.core.blocks
 
 
 class Migration(migrations.Migration):
@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='category',
             name='body',
-            field=wagtail.wagtailcore.fields.StreamField([(b'heading', wagtail.wagtailcore.blocks.CharBlock(classname=b'full title')), (b'paragraph', wagtail.wagtailcore.blocks.RichTextBlock()), (b'image', wagtail.wagtailimages.blocks.ImageChooserBlock()), (b'product_block', wagtail.wagtailcore.blocks.StructBlock([(b'title', wagtail.wagtailcore.blocks.CharBlock()), (b'subtitle', wagtail.wagtailcore.blocks.CharBlock()), (b'products', wagtail.wagtailcore.blocks.ListBlock(demo.apps.catalogue.blocks.ProductChooserBlock))]))], default=''),
+            field=wagtail.core.fields.StreamField([('heading', wagtail.core.blocks.CharBlock(classname='full title')), ('paragraph', wagtail.core.blocks.RichTextBlock()), ('image', wagtail.images.blocks.ImageChooserBlock()), ('product_block', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock()), ('subtitle', wagtail.core.blocks.CharBlock()), ('products', wagtail.core.blocks.ListBlock(demo.apps.catalogue.blocks.ProductChooserBlock))]))], default=''),
             preserve_default=False,
         ),
         migrations.AddField(
