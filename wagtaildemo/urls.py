@@ -1,5 +1,5 @@
 from django.apps import apps
-from django.conf.urls import include, url
+from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
@@ -13,18 +13,18 @@ from demo import views
 
 
 urlpatterns = [
-    url(r'^django-admin/', include(admin.site.urls)),
+    path('django-admin/', admin.site.urls),
 
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
+    path('admin/', include(wagtailadmin_urls)),
+    path('documents/', include(wagtaildocs_urls)),
 
-    url(r'search/$', views.search, name='search'),
+    re_path(r'search/$', views.search, name='search'),
     #url(r'^api/', include(wagtailapi_urls)),
 
     # For anything not caught by a more specific rule above, hand over to
     # Oscar's then Wagtail's serving mechanism
-    url(r'', include(apps.get_app_config('oscar').urls[0])),
-    url(r'', include(wagtail_urls)),
+    path('', include(apps.get_app_config('oscar').urls[0])),
+    path('', include(wagtail_urls)),
 ]
 
 
@@ -37,7 +37,7 @@ if settings.DEBUG:
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )
     urlpatterns += [
-        url(r'^favicon\.ico$', RedirectView.as_view(
-            url=settings.STATIC_URL + 'demo/images/favicon.ico')
+        re_path(r'^favicon\.ico$', RedirectView.as_view(
+               url=settings.STATIC_URL + 'demo/images/favicon.ico')
             )
     ]

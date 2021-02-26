@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
             name='AdvertPlacement',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('advert', models.ForeignKey(related_name='+', to='demo.Advert')),
+                ('advert', models.ForeignKey(on_delete=models.CASCADE, related_name='+', to='demo.Advert')),
             ],
             options={
             },
@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BlogIndexPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('intro', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name='External link', blank=True)),
                 ('title', models.CharField(help_text='Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -68,7 +68,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BlogPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('body', wagtail.core.fields.RichTextField()),
                 ('date', models.DateField(verbose_name='Post date')),
                 ('feed_image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
@@ -87,7 +87,7 @@ class Migration(migrations.Migration):
                 ('embed_url', models.URLField(verbose_name='Embed URL', blank=True)),
                 ('caption', models.CharField(max_length=255, blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -102,7 +102,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name='External link', blank=True)),
                 ('title', models.CharField(help_text='Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -115,7 +115,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('content_object', modelcluster.fields.ParentalKey(related_name='tagged_items', to='demo.BlogPage')),
-                ('tag', models.ForeignKey(related_name='demo_blogpagetag_items', to='taggit.Tag')),
+                ('tag', models.ForeignKey(on_delete=models.CASCADE, related_name='demo_blogpagetag_items', to='taggit.Tag')),
             ],
             options={
                 'abstract': False,
@@ -125,7 +125,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ContactPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('telephone', models.CharField(max_length=20, blank=True)),
                 ('email', models.EmailField(max_length=75, blank=True)),
                 ('address_1', models.CharField(max_length=255, blank=True)),
@@ -144,7 +144,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='EventIndexPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('intro', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
@@ -159,7 +159,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name='External link', blank=True)),
                 ('title', models.CharField(help_text='Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -170,7 +170,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='EventPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('date_from', models.DateField(verbose_name='Start date')),
                 ('date_to', models.DateField(help_text='Not required if event is on a single day', null=True, verbose_name='End date', blank=True)),
                 ('time_from', models.TimeField(null=True, verbose_name='Start time', blank=True)),
@@ -196,7 +196,7 @@ class Migration(migrations.Migration):
                 ('embed_url', models.URLField(verbose_name='Embed URL', blank=True)),
                 ('caption', models.CharField(max_length=255, blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -211,7 +211,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name='External link', blank=True)),
                 ('title', models.CharField(help_text='Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -228,7 +228,7 @@ class Migration(migrations.Migration):
                 ('first_name', models.CharField(max_length=255, verbose_name='Name', blank=True)),
                 ('last_name', models.CharField(max_length=255, verbose_name='Surname', blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -257,7 +257,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='FormPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('to_address', models.CharField(help_text='Optional - form submissions will be emailed to this address', max_length=255, blank=True)),
                 ('from_address', models.CharField(max_length=255, blank=True)),
                 ('subject', models.CharField(max_length=255, blank=True)),
@@ -272,7 +272,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='HomePage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('body', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
@@ -289,7 +289,7 @@ class Migration(migrations.Migration):
                 ('embed_url', models.URLField(verbose_name='Embed URL', blank=True)),
                 ('caption', models.CharField(max_length=255, blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -304,7 +304,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name='External link', blank=True)),
                 ('title', models.CharField(help_text='Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -315,7 +315,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PersonPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('telephone', models.CharField(max_length=20, blank=True)),
                 ('email', models.EmailField(max_length=75, blank=True)),
                 ('address_1', models.CharField(max_length=255, blank=True)),
@@ -342,7 +342,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name='External link', blank=True)),
                 ('title', models.CharField(help_text='Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -353,7 +353,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='StandardIndexPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('intro', wagtail.core.fields.RichTextField(blank=True)),
                 ('feed_image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
             ],
@@ -369,7 +369,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name='External link', blank=True)),
                 ('title', models.CharField(help_text='Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -380,7 +380,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='StandardPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('intro', wagtail.core.fields.RichTextField(blank=True)),
                 ('body', wagtail.core.fields.RichTextField(blank=True)),
                 ('feed_image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
@@ -399,8 +399,8 @@ class Migration(migrations.Migration):
                 ('embed_url', models.URLField(verbose_name='Embed URL', blank=True)),
                 ('caption', models.CharField(max_length=255, blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
-                ('link_page', models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_page', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True)),
                 ('page', modelcluster.fields.ParentalKey(related_name='carousel_items', to='demo.StandardPage')),
             ],
             options={
@@ -416,8 +416,8 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name='External link', blank=True)),
                 ('title', models.CharField(help_text='Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
-                ('link_page', models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True)),
+                ('link_document', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_page', models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True)),
                 ('page', modelcluster.fields.ParentalKey(related_name='related_links', to='demo.StandardPage')),
             ],
             options={
@@ -429,7 +429,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='standardindexpagerelatedlink',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -441,7 +441,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='personpagerelatedlink',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -453,7 +453,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepagerelatedlink',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -465,7 +465,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='homepagecarouselitem',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -483,7 +483,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='eventpagespeaker',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -495,7 +495,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='eventpagerelatedlink',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -507,7 +507,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='eventpagecarouselitem',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -519,7 +519,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='eventindexpagerelatedlink',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -531,7 +531,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blogpagerelatedlink',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -543,7 +543,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blogpagecarouselitem',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -561,7 +561,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blogindexpagerelatedlink',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='+', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -579,7 +579,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='advert',
             name='page',
-            field=models.ForeignKey(related_name='adverts', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(on_delete=models.CASCADE, related_name='adverts', blank=True, to='wagtailcore.Page', null=True),
             preserve_default=True,
         ),
     ]

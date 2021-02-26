@@ -96,12 +96,14 @@ class LinkFields(models.Model):
     link_external = models.URLField("External link", blank=True)
     link_page = models.ForeignKey(
         'wagtailcore.Page',
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
         related_name='+'
     )
     link_document = models.ForeignKey(
         'wagtaildocs.Document',
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
         related_name='+'
@@ -191,12 +193,13 @@ class RelatedLink(LinkFields):
 
 class AdvertPlacement(models.Model):
     page = ParentalKey('wagtailcore.Page', related_name='advert_placements')
-    advert = models.ForeignKey('demo.Advert', related_name='+')
+    advert = models.ForeignKey('demo.Advert', on_delete=models.CASCADE, related_name='+')
 
 
 class Advert(models.Model):
     page = models.ForeignKey(
         'wagtailcore.Page',
+        on_delete=models.CASCADE,
         related_name='adverts',
         null=True,
         blank=True

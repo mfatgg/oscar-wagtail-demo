@@ -1,5 +1,5 @@
 from django.apps import apps
-from django.conf.urls import url
+from django.urls import path
 
 from oscar import config
 
@@ -13,6 +13,6 @@ class OscarApplication(config.Shop):
         core serving mechanism.
         """
         urlpattern = super(OscarApplication, self).get_urls()[1:]
-        urlpattern.append(url(r'^promotions/', apps.get_app_config("oscar_promotions").urls))
-        urlpattern.append(url(r'^dashboard/promotions/', apps.get_app_config("oscar_promotions_dashboard").urls))
+        urlpattern.append(path('promotions/', apps.get_app_config("oscar_promotions").urls))
+        urlpattern.append(path('dashboard/promotions/', apps.get_app_config("oscar_promotions_dashboard").urls))
         return urlpattern

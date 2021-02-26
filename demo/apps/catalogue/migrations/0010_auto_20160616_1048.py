@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='category',
             name='page_ptr',
-            field=models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, default='', serialize=False, to='wagtailcore.Page'),
+            field=models.OneToOneField(on_delete=models.CASCADE, parent_link=True, auto_created=True, primary_key=True, default='', serialize=False, to='wagtailcore.Page'),
             preserve_default=False,
         ),
         migrations.AlterField(
