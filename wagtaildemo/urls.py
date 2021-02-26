@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
@@ -9,7 +10,6 @@ from wagtail.core import urls as wagtail_urls
 #from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
 
 from demo import views
-from wagtaildemo.app import oscar_urls
 
 
 urlpatterns = [
@@ -23,7 +23,7 @@ urlpatterns = [
 
     # For anything not caught by a more specific rule above, hand over to
     # Oscar's then Wagtail's serving mechanism
-    url(r'', include(oscar_urls)),
+    url(r'', include(apps.get_app_config('oscar').urls[0])),
     url(r'', include(wagtail_urls)),
 ]
 

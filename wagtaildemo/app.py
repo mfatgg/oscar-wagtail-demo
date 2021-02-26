@@ -1,9 +1,10 @@
-from django.conf.urls import include, url
+from django.apps import apps
+from django.conf.urls import url
 
-from oscar.app import Shop
+from oscar import config
 
 
-class OscarApplication(Shop):
+class OscarApplication(config.Shop):
 
     def get_urls(self):
         """
@@ -11,9 +12,7 @@ class OscarApplication(Shop):
         from location r'' to r'^promotions/' to free up space for Wagtail's
         core serving mechanism.
         """
-        urls = super(OscarApplication, self).get_urls()[:-1]
-        urls.append(url(r'^promotions/', include(self.promotions_app.urls)),)
-        return urls
-
-
-oscar_urls = OscarApplication().urls
+        urlpattern = super(OscarApplication, self).get_urls()[1:]
+        urlpattern.append(url(r'^promotions/', apps.get_app_config("oscar_promotions").urls))
+        urlpattern.append(url(r'^dashboard/promotions/', apps.get_app_config("oscar_promotions_dashboard").urls))
+        return urlpattern

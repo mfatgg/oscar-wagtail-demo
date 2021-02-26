@@ -1,6 +1,7 @@
-from wagtail.core.models import Page
-from demo.apps.catalogue.models import Category
+from oscar.core.loading import get_model
 
+Category = get_model('catalogue', 'category')
+Page = get_model('wagtailcore', 'Page')
 
 def create_from_sequence(bits):
     """

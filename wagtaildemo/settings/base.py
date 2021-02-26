@@ -4,7 +4,6 @@ import os
 
 from django.utils.translation import ugettext_lazy as _
 from oscar.defaults import *  # noqa
-from oscar import get_core_apps, OSCAR_MAIN_TEMPLATE_DIR
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 BASE_DIR = PROJECT_ROOT
@@ -161,12 +160,48 @@ INSTALLED_APPS = [
     'wagtail.sites',
     #'wagtail.contrib.wagtailapi',
 
-    'demo',
-] + get_core_apps([
+    'django_tables2',
+    'haystack',
+    'sorl.thumbnail',
+    #'oscar',
+    'wagtaildemo',
+    'oscar.apps',
+    'oscar.apps.address',
+    'oscar.apps.analytics',
+    'oscar.apps.basket',
+    #'oscar.apps.catalogue',
     'demo.apps.catalogue',
-    'demo.apps.dashboard.catalogue',
+    'oscar.apps.catalogue.reviews',
+    'oscar.apps.checkout',
+    'oscar.apps.customer',
+    'oscar.apps.offer',
+    'oscar.apps.order',
+    #'oscar.apps.partner',
     'demo.apps.partner',
-])
+    'oscar.apps.payment',
+    'oscar.apps.search',
+    'oscar.apps.shipping',
+    'oscar.apps.voucher',
+    'oscar.apps.wishlists',
+    'oscar_promotions.apps.PromotionsConfig',
+    'oscar.apps.dashboard',
+    #'oscar.apps.dashboard.catalogue',
+    'demo.apps.dashboard.catalogue',
+    'oscar.apps.dashboard.communications',
+    'oscar.apps.dashboard.offers',
+    'oscar.apps.dashboard.orders',
+    'oscar.apps.dashboard.pages',
+    'oscar.apps.dashboard.partners',
+    'oscar.apps.dashboard.ranges',
+    'oscar.apps.dashboard.reports',
+    'oscar.apps.dashboard.reviews',
+    'oscar.apps.dashboard.shipping',
+    'oscar.apps.dashboard.users',
+    'oscar.apps.dashboard.vouchers',
+    'oscar_promotions.dashboard.apps.PromotionsDashboardConfig',
+    'demo',
+]
+
 
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -198,8 +233,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            OSCAR_MAIN_TEMPLATE_DIR
+            os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -212,10 +246,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'oscar.apps.search.context_processors.search_form',
-                'oscar.apps.promotions.context_processors.promotions',
+                'oscar_promotions.context_processors.promotions',
                 'oscar.apps.checkout.context_processors.checkout',
-                'oscar.apps.customer.notifications.context_processors.'
-                'notifications',
+                'oscar.apps.customer.notifications.context_processors.notifications',
                 'oscar.core.context_processors.metadata',
             ],
         },
@@ -272,3 +305,14 @@ OSCAR_DASHBOARD_NAVIGATION = [
         'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff
     },
 ] + OSCAR_DASHBOARD_NAVIGATION  # noqa
+
+OSCAR_DASHBOARD_NAVIGATION[5]['children'] += [
+    {
+        'label': 'Content blocks',
+        'url_name': 'oscar_promotions_dashboard:promotion-list',
+    },
+    {
+        'label': 'Content blocks by page',
+        'url_name': 'oscar_promotions_dashboard:promotion-list-by-page',
+    },
+]

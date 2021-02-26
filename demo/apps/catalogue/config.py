@@ -1,5 +1,5 @@
-from oscar.apps.catalogue import config
+from oscar.apps.catalogue.apps import CatalogueConfig as BaseConfig
 
 
-class CatalogueConfig(config.CatalogueConfig):
-    name = 'demo.apps.catalogue'
+class CatalogueConfig(BaseConfig):
+    pass

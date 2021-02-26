@@ -1,5 +1,5 @@
-from oscar.apps.partner import config
+from oscar.apps.partner.apps import PartnerConfig as BaseConfig
 
 
-class PartnerConfig(config.PartnerConfig):
-    name = 'demo.apps.partner'
+class PartnerConfig(BaseConfig):
+    pass
