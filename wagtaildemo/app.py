@@ -12,6 +12,7 @@ class OscarApplication(Shop):
         wagtailcore serving mechanism.
         """
         urls = super(OscarApplication, self).get_urls()[:-1]
+        #print(super(OscarApplication, self).get_urls())
         urls.append(url(r'^promotions/', include(self.promotions_app.urls)),)
         return urls
 
