@@ -1,0 +1,19 @@
+{% load category_tags %}
+{% load i18n %}
+
+{% category_tree as tree_categories %}
+{% if tree_categories %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">{% trans "Shop categories" %}</h3></div>
+        <div class="list-group">
+            {% for tree_category in tree_categories %}
+                    {% include "demo/includes/category_list_item.html" %}
+
+                    {% if tree_category.has_children %}<ul>{% else %}{% endif %}
+                    {% for n in tree_category.num_to_close %}
+                        </ul>
+                    {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

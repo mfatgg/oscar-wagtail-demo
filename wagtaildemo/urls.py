@@ -3,6 +3,7 @@ from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
+from oscar.core.loading import get_model
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls

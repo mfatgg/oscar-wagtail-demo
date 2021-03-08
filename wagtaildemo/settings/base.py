@@ -18,18 +18,18 @@ ADMINS = (
 # as per https://docs.djangoproject.com/en/dev/topics/email/#email-backends
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'oscarwagtaildemo',
-    }
-}
 #DATABASES = {
 #    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'oscarwagtaildemo',
 #    }
 #}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -138,6 +138,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
+    'django_extensions',
 
     'compressor',
     'widget_tweaks',
@@ -160,35 +161,40 @@ INSTALLED_APPS = [
     'wagtail.sites',
     #'wagtail.contrib.wagtailapi',
 
+    'catalogue.apps.CatalogueConfig',
+    'offer.apps.OfferConfig',
+    'oscar_promotions.apps.PromotionsConfig',
+    'partner.apps.PartnerConfig',
+    'dashboard.catalogue.apps.CatalogueDashboardConfig',
+    'dashboard.offers.apps.OffersDashboardConfig',
+    'oscar_promotions.dashboard.apps.PromotionsDashboardConfig',
+    'demo',
+    'wagtaildemo',
+
     'django_tables2',
     'haystack',
     'sorl.thumbnail',
+    'treebeard',
     #'oscar',
-    'wagtaildemo',
-    'oscar.apps',
     'oscar.apps.address',
     'oscar.apps.analytics',
     'oscar.apps.basket',
     #'oscar.apps.catalogue',
-    'demo.apps.catalogue',
     'oscar.apps.catalogue.reviews',
     'oscar.apps.checkout',
     'oscar.apps.customer',
-    'oscar.apps.offer',
+    #'oscar.apps.offer',
     'oscar.apps.order',
     #'oscar.apps.partner',
-    'demo.apps.partner',
     'oscar.apps.payment',
     'oscar.apps.search',
     'oscar.apps.shipping',
     'oscar.apps.voucher',
     'oscar.apps.wishlists',
-    'oscar_promotions.apps.PromotionsConfig',
     'oscar.apps.dashboard',
     #'oscar.apps.dashboard.catalogue',
-    'demo.apps.dashboard.catalogue',
     'oscar.apps.dashboard.communications',
-    'oscar.apps.dashboard.offers',
+    #'oscar.apps.dashboard.offers',
     'oscar.apps.dashboard.orders',
     'oscar.apps.dashboard.pages',
     'oscar.apps.dashboard.partners',
@@ -198,8 +204,6 @@ INSTALLED_APPS = [
     'oscar.apps.dashboard.shipping',
     'oscar.apps.dashboard.users',
     'oscar.apps.dashboard.vouchers',
-    'oscar_promotions.dashboard.apps.PromotionsDashboardConfig',
-    'demo',
 ]
 
 

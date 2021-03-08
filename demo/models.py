@@ -5,6 +5,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django import forms
 
+from oscar.core.loading import get_model
+
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import (
@@ -35,6 +37,35 @@ EVENT_AUDIENCE_CHOICES = (
     ('public', "Public"),
     ('private', "Private"),
 )
+
+
+# For Oscar
+Benefit = get_model('offer', 'Benefit')
+from oscar.apps.offer.results import PostOrderAction
+
+class ChangesOwnerName(Benefit):
+
+    class Meta:
+        proxy = True
+        app_label = 'demo'
+
+    def apply(self, basket, condition, offer=None):
+        condition.consume_items(offer, basket, ())
+        return PostOrderAction(
+            "You will have your name changed to Barry!")
+
+    def apply_deferred(self, basket, order, application):
+        if basket.owner:
+            basket.owner.first_name = "Barry"
+            basket.owner.save()
+        return "Your name has been changed to Barry!"
+
+    @property
+    def description(self):
+        return "Changes owners name"
+
+    name = description
+
 
 
 # Global Streamfield definition
