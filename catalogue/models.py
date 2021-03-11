@@ -37,7 +37,7 @@ class Category(Page):
     The Oscars Category as a Wagtail Page
     This works because they both use Treebeard
     """
-    template = "demo/catalogue/cataloguepage.html"
+    template = "demo/catalogue/categorypage.html"
     name = models.CharField(_('Name'), max_length=255, db_index=True)
     description = models.TextField(_('Description'), blank=True)
     image = models.ForeignKey(
@@ -59,6 +59,8 @@ class Category(Page):
         ImageChooserPanel('image'),
         StreamFieldPanel('body'),
     ]
+
+    show_in_menus_default = True
 
     _slug_separator = '/'
     _full_name_separator = ' > '
@@ -86,6 +88,7 @@ class Category(Page):
         isn't at depth=1 as that's Wagtail's root.
         """
         node = Category.objects.filter(depth=1).first()
+        print(f'add_root: node=({type(node)}){node}  kwargs={kwargs}')
         return node.add_child(**kwargs)
 
     @classmethod
@@ -103,6 +106,13 @@ class Category(Page):
             return cls.objects.filter(content_type=content_type, depth=depth)
 
         return cls.objects.filter(content_type=content_type)
+
+    def get_children(self):
+        """
+        Find only specific children (e.g. only Categories, not Pages).
+        This is needed for catalogue data imports (see oscar.apps.partner).
+        """
+        return super().get_children().specific()
 
     def get_full_slug(self, parent_slug=None):
         if self.is_root():

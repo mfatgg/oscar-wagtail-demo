@@ -30,6 +30,7 @@ from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
+from catalogue.blocks import ProductBlock, ProductChooserBlock
 from demo.utils import export_event
 
 
@@ -119,6 +120,8 @@ class DemoStreamBlock(StreamBlock):
     pullquote = PullQuoteBlock()
     aligned_html = AlignedHTMLBlock(icon="code", label='Raw HTML')
     document = DocumentChooserBlock(icon="doc-full-inverse")
+    productlist = ProductBlock(label="Product List")
+    singleproduct = ProductChooserBlock(label="Single Product")
 
 
 # A couple of abstract classes that contain commonly used fields

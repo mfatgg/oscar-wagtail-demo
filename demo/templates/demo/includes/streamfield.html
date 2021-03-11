@@ -1,4 +1,4 @@
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags product_tags %}
 
 <div class="stream-field">
     {% for child in content %}
@@ -39,6 +39,10 @@
                     </div>
                 {% endif %}
             </div>
+        {% elif child.block_type == 'productlist' %}
+            {% include 'demo/includes/product_block.html' with block=child blocks=child %}
+        {% elif child.block_type == 'singleproduct' %}
+            {% render_product child.value %}
         {% else %}
             {{ child }}
         {% endif %}

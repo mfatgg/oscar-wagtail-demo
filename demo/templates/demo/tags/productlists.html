@@ -1,0 +1,16 @@
+{% load wagtailcore_tags %}
+
+{% if productlists %}
+  <ul class="advert-list list-inline text-center">
+    {% for productlist in productlists %}
+      {{ productlist.title }}
+      <li>
+        {% for item in productlist.items.all %}
+          <a href="{{ item.product.get_absolute_url }}">
+          {{ item.product.title }}
+        {% endfor %}
+      </li>
+      {% if not forloop.last %}<li><strong>·</strong></li>{% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}

@@ -54,8 +54,11 @@ def top_menu(context, parent, calling_page=None):
 # Retrieves the children of the top menu items for the drop downs
 @register.inclusion_tag('demo/tags/top_menu_children.html', takes_context=True)
 def top_menu_children(context, parent):
+    print(f'top_menu_children: parent={parent}')
     menuitems_children = parent.get_children()
     menuitems_children = menuitems_children.live().in_menu()
+    for menuitem in menuitems_children:
+        menuitem.show_dropdown = has_menu_children(menuitem)
     return {
         'parent': parent,
         'menuitems_children': menuitems_children,

@@ -1,6 +1,5 @@
-{% load category_tags demo_tags wagtailcore_tags %}
+{% load demo_tags wagtailcore_tags %}
 {% get_site_root as site_root %}
-{% category_tree as tree_categories %}
 
 {# Implementation of bootstrap theme dropdown menu - shows top level links and their children #}
 <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
@@ -29,16 +28,6 @@
                         {% endif %}
                     </li>
                 {% endfor %}
-                {# {% for tree_category in tr #}ee_categories %}
-                {#     <li class="active"> #}
-                {#         <a class="list-group-item" href="{{ tree_category.url }}"> {{ tree_category.name }}</a> #}
-
-                {#         {% if tree_category.has_children %}<ul>{% else %}{% endif %} #}
-                {#         {% for n in tree_category.num_to_close %} #}
-                {#             </ul> #}
-                {#         {% endfor %} #}
-                {#     </li> #}
-                {# {% endfor %} #}
             </ul>
             <form class="navbar-form navbar-right" role="search" action="{% url 'search' %}" method="get">
                 <div class="input-group">

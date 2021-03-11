@@ -1,9 +1,21 @@
-{% load demo_tags wagtailcore_tags %}
+{% load category_tags demo_tags wagtailcore_tags %}
+{% category_tree as tree_categories %}
 
 <ul class="dropdown-menu">
-    {# Include link to parent because the parent link is a drop down #}
-    <li><a href="{% pageurl parent %}">{{ parent.title }}</a></li>
-    {% for child in menuitems_children %}
-        <li><a href="{% pageurl child %}">{{ child.title }}</a></li>
-    {% endfor %}
+    {% if "shop" in parent.title.lower %}
+        {% for tree_category in tree_categories %}
+            <li><a href="{{ tree_category.url }}"> {{ tree_category.name }}</a></li>
+
+            {% if tree_category.has_children %}<ul>{% else %}{% endif %}
+            {% for n in tree_category.num_to_close %}
+                </ul>
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        {# Include link to parent because the parent link is a drop down #}
+        <li><a href="{% pageurl parent %}">{{ parent.title }}</a></li>
+        {% for child in menuitems_children %}
+            <li><a href="{% pageurl child %}">{{ child.title }}</a></li>
+        {% endfor %}
+    {% endif %}
 </ul>
